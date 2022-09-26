@@ -1,0 +1,10 @@
+I = imread('contoh-pc.jpg');
+Inoise = imnoise(I, 'salt & pepper', 0.2);
+r = Inoise(:,:,1); g = Inoise(:,:,2); b = Inoise(:,:,3);
+Ifiltered_r = medfilt2(r, [3 3]);
+Ifiltered_g = medfilt2(g, [3 3]);
+Ifiltered_b = medfilt2(b, [3 3]);
+Ifiltered = cat(3, Ifiltered_r, Ifiltered_g, Ifiltered_b);
+subplot(1, 3, 1); imshow(I); title('Citra asli');
+subplot(1, 3, 2); imshow(Inoise); title('Citra noise');
+subplot(1, 3, 3); imshow(Ifiltered); title('Citra Median filter');

@@ -1,0 +1,14 @@
+A = 2.4;
+Original = imread('contoh-pc.jpg');
+G = [1/25 1/25 1/25 1/25 1/25;
+1/25 1/25 1/25 1/25 1/25;
+1/25 1/25 1/25 1/25 1/25;
+1/25 1/25 1/25 1/25 1/25;
+1/25 1/25 1/25 1/25 1/25];
+Lowpass = uint8(convn(double(Original), double(G), 'same'));
+Highpass = Original - Lowpass;
+Isharp = (A-1)*Original + Highpass;
+subplot(2, 2, 1),imshow(Original), title('Citra asli');
+subplot(2, 2, 2), imshow(Lowpass),title('Citra lowpass');
+subplot(2, 2, 3), imshow(Highpass),title('Citra highpass');
+subplot(2, 2, 4),imshow(Isharp),title('Citra Highboost filtering');
